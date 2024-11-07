@@ -12,6 +12,7 @@ export const fetchProducts = createAsyncThunk<ProductResponseType[]>(
 
 type initialStateType = {
   datas: ProductResponseType[];
+  cart: ProductResponseType[];
   loading: boolean;
   error: string;
 };
@@ -20,12 +21,17 @@ const initialState: initialStateType = {
   datas: [],
   loading: false,
   error: "",
+  cart: [],
 };
 
 const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    addToCart: (state, action) => {
+      state.cart = [...state.cart, action.payload];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -46,4 +52,5 @@ const productSlice = createSlice({
   },
 });
 
+export const { addToCart } = productSlice.actions;
 export default productSlice.reducer;

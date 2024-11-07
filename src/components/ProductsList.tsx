@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { fetchProducts } from "../redux/slices/productSlice";
+import { SingleProduct } from "./SingleProduct";
 
 export const ProductsList = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ export const ProductsList = () => {
     <div>
       <h1>ProductsList</h1>
       {datas.map((data) => (
-        <li key={data.id}>{data.title}</li>
+        <SingleProduct data={data} />
       ))}
     </div>
   );
