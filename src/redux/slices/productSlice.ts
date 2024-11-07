@@ -38,10 +38,10 @@ const productSlice = createSlice({
         state.datas = action.payload;
         state.error = "";
       })
-      .addCase(fetchProducts.rejected, (state) => {
+      .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
         state.datas = [];
-        state.error = "";
+        state.error = action.error.message || "Failed to fetch products.";
       });
   },
 });
